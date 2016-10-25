@@ -33,6 +33,8 @@ public class Usuario
 
     public int Tipo_Usuario { get; set; }
 
+    int italo = 10;
+
     public bool ValidarLogin()
     {
         DataTable dt = new DataTable();
