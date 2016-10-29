@@ -57,8 +57,6 @@
         <div class="container">
         </div>
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
             <hr />
             <footer>
                 <p><%: DateTime.Now.Year %> - Super S.A.D.</p>
