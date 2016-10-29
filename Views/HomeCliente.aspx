@@ -2,8 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
 
-    <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox>
-<asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false">
+        <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox>
+    <asp:Button ID="btPesquisar" runat="server" Text="Pesquisar" />
+        <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="id_problema" HeaderText="Id Problema" ItemStyle-Width="100" />
                 <asp:BoundField DataField="titulo_problrma" HeaderText="Titulo" ItemStyle-Width="250" />
