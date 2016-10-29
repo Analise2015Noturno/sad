@@ -71,6 +71,7 @@ public class Usuario
             this.Email = dt.Rows[0]["email"].ToString();
             this.Senha = dt.Rows[0]["senha"].ToString();
             this.Tipo_Usuario = int.Parse(dt.Rows[0]["id_tipo_usuario"].ToString());
+            this.Cep = dt.Rows[0]["cep"].ToString();
 
             return true;
         }
