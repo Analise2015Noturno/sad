@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Cadastrar.aspx.cs" Inherits="Cadastrar" %>
 
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+        <link runat="server" href="~/Style/sad.css" rel="stylesheet" />
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
      <div class="col-md-10">
             <section id="loginForm">
@@ -111,56 +115,6 @@
                 </div>
             </section>
         </div>
-</asp:Content>
-
-<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
-    <style type="text/css">
-        .auto-style1 {
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #555555;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            margin-left: 0px;
-        }
-        .auto-style2 {
-            height: 34px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #555555;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            margin-left: 0px;
-        }
-        .auto-style4 {
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #555555;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-    </style>
 </asp:Content>
 
 
