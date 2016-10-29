@@ -44,7 +44,7 @@
                             <li><a runat="server" href="#">Ajuda</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a runat="server" href="#">Olá, <span class="bold"><asp:Label ID="lbNome" runat="server" Text="Nome do Cliente" /></span></a></li>
+                            <li><a runat="server" href="~/Views/Config.aspx">Olá, <span class="bold"><asp:Label ID="lbNome" runat="server" Text="Nome do Cliente" /></span></a></li>
                             <li><a runat="server" href="~/Views/Logout.aspx"> [Sair]</a></li>
                         </ul>
                     </div>

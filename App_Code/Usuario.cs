@@ -49,7 +49,7 @@ public class Usuario
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "select * from tbl_usuario where senha='"+ this.Senha +"' and (email = '"+ this.Email +"' or cpf = '"+ this.Cpf +"')";
+            cmd.CommandText = "select * from tbl_usuario where senha='" + this.Senha + "' and (email = '" + this.Email + "' or cpf = '" + this.Cpf + "')";
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(dt);
@@ -94,7 +94,7 @@ public class Usuario
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "select * from tbl_usuario where cpf = '"+ this.Cpf +"' or email ='"+ this.Email +"'";
+            cmd.CommandText = "select * from tbl_usuario where cpf = '" + this.Cpf + "' or email ='" + this.Email + "'";
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(dt);
@@ -123,7 +123,7 @@ public class Usuario
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "insert into tbl_usuario values ('"+ this.Nome +"','"+ this.Cpf +"','"+ this.Cep +"','"+this.Endereco+"',"+ this.nEndereco +",'"+ this.Bairro +"','"+ this.Cidade +"', '"+ this.Uf +"', '"+ this.Email +"', '"+ this.Senha +"', 2)";
+            cmd.CommandText = "insert into tbl_usuario values ('" + this.Nome + "','" + this.Cpf + "','" + this.Cep + "','" + this.Endereco + "'," + this.nEndereco + ",'" + this.Bairro + "','" + this.Cidade + "', '" + this.Uf + "', '" + this.Email + "', '" + this.Senha + "', 2)";
             cmd.ExecuteNonQuery();
 
             return true;
@@ -133,4 +133,55 @@ public class Usuario
             return false;
         }
     }
+
+
+    public bool Atualizar()
+    {
+        try
+        {
+            string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.Parameters.Add(new SqlParameter("@nome",this.Nome));
+            cmd.Parameters.Add(new SqlParameter("@cpf" , this.Cpf));
+            cmd.Parameters.Add(new SqlParameter("@cep", this.Cep));
+            cmd.Parameters.Add(new SqlParameter("@endereco" , this.Endereco));
+            cmd.Parameters.Add(new SqlParameter("@numero", this.nEndereco.ToString()));
+            cmd.Parameters.Add(new SqlParameter("@bairro", this.Bairro));
+            cmd.Parameters.Add(new SqlParameter("@cidade", this.Cidade));
+            cmd.Parameters.Add(new SqlParameter("@uf",this.Uf));
+            cmd.Parameters.Add(new SqlParameter("@email", this.Email));
+            cmd.Parameters.Add(new SqlParameter("@senha", this.Senha));
+            cmd.Parameters.Add(new SqlParameter("@idusuario", this.IdUsuario));
+            cmd.CommandText = " update tbl_usuario set " +
+                  " nome_usuario = @nome , " +
+                  " cpf = @cpf , " +
+                  " cep = @cep , " +
+                  " endereco = @endereco , " +
+                  " n_endereco = @numero , " +
+                  " bairro = @bairro , " +
+                  " cidade = @cidade , " +
+                  " uf = @uf , " +
+                  " email = @email , " +
+                  " senha = @senha " +
+                  " where id_usuario = @idusuario ";
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            return true;
+        }
+        catch(Exception ex)
+        {
+            HttpContext.Current.Response.Write(ex.Message);
+            return false;
+        }
+    }
+
+
+
+
 }
