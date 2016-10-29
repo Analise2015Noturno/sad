@@ -7,7 +7,7 @@
         <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="id_problema" HeaderText="Id Problema" ItemStyle-Width="100" />
-                <asp:BoundField DataField="titulo_problrma" HeaderText="Titulo" ItemStyle-Width="250" />
+                <asp:BoundField DataField="titulo_problema" HeaderText="Titulo" ItemStyle-Width="250" />
                 <asp:BoundField DataField="descricao_problema" HeaderText="Descrição" ItemStyle-Width="350" />
                 <asp:BoundField DataField="dt_criacao" HeaderText="Data da Criação" ItemStyle-Width="250" />
                 <asp:BoundField DataField="dt_hr_atualizacao" HeaderText="Data da Atualização" ItemStyle-Width="250" />
