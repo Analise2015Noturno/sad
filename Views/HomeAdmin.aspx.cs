@@ -13,6 +13,14 @@ public partial class HomeAdmin : System.Web.UI.Page
         {
             Response.Redirect("~/Views/Login.aspx");
         }
+        else
+        {
+            Usuario user = (Usuario)Session["UsuarioOnline"];
+            if (user.Tipo_Usuario != 1)
+            {
+                Response.Redirect("~/Views/Logout.aspx");
+            }
+        }
     }
     protected void CadastrarProblema()
     {
