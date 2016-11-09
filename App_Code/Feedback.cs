@@ -15,5 +15,5 @@ public class Feedback
     public DateTime dt_feedback { get; set; }
 
     public int id_solucao { get; set; }
-
+    public static int Text { get; set; }
 }

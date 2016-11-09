@@ -14,7 +14,7 @@
                 <asp:BoundField DataField="usuario_solucao" HeaderText="Usuario da solução" ItemStyle-Width="150" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID="detalhes" runat="server" PostBackUrl='ProblemaDetalhe.aspx' Text="Detalhes" />
+                        <asp:LinkButton ID="detalhes" runat="server" PostBackUrl='DetalheProblema.aspx' Text=" Detalhes " />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
