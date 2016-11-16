@@ -10,7 +10,7 @@
             <asp:TextBox runat="server" ID="txtPesquisa" CssClass="form-control" AutoPostBack="True" />
         </div>
         <div class="col-md-5">
-            <asp:Button ID="btPequisa" runat="server" Text="Pesquisar" class="btn btn-primary" OnClick="btPequisa_Click" />
+            <asp:Button ID="btPesquisa" runat="server" Text="Pesquisar" class="btn btn-primary" OnClick="btPesquisa_Click" />
         </div>
     </div>
     <hr />
@@ -24,7 +24,7 @@
             <asp:BoundField DataField="CRIADO POR" HeaderText="CRIADO POR" ItemStyle-Width="250" />
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:Button ID="Button1" runat="server" Text="Detalhes" class="btn btn-primary" PostBackUrl='DetalheProblema.aspx'/>
+                    <asp:Button ID="Button1" runat="server" Text="Detalhes" class="btn btn-primary"  PostBackUrl='<%# String.Format("DetalheProblema.aspx?codigo={0}", Eval("CÓDIGO DO PROBLEMA"))%>'/>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

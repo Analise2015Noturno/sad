@@ -12,8 +12,9 @@ public partial class HomeCliente : System.Web.UI.Page
         if (Session["UsuarioOnline"] == null)
             Response.Redirect("/Views/Login.aspx");
     }
+     
 
-    protected void btPequisa_Click(object sender, EventArgs e)
+    protected void btPesquisa_Click(object sender, EventArgs e)
     {
         Problema problema = new Problema();
         problema.TituloProblema = txtPesquisa.Text;
