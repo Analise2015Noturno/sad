@@ -1,22 +1,32 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="HomeCliente.aspx.cs" Inherits="HomeCliente" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-
-        <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox>
-    <asp:Button ID="btPesquisar" runat="server" Text="Pesquisar" />
-        <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false">
-            <Columns>
-                <asp:BoundField DataField="id_problema" HeaderText="Id Problema" ItemStyle-Width="100" />
-                <asp:BoundField DataField="titulo_problema" HeaderText="Titulo" ItemStyle-Width="250" />
-                <asp:BoundField DataField="descricao_problema" HeaderText="Descrição" ItemStyle-Width="350" />
-                <asp:BoundField DataField="dt_criacao" HeaderText="Data da Criação" ItemStyle-Width="250" />
-                <asp:BoundField DataField="dt_hr_atualizacao" HeaderText="Data da Atualização" ItemStyle-Width="250" />
-                <asp:BoundField DataField="usuario_solucao" HeaderText="Usuario da solução" ItemStyle-Width="150" />
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:LinkButton ID="detalhes" runat="server" PostBackUrl='DetalheProblema.aspx' Text=" Detalhes " />
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+    <!--PESQUISAR-->
+    <div class="row">
+        <div class="col-md-2">
+            <asp:Label runat="server" AssociatedControlID="txtPesquisa" CssClass="control-label">Pesquisar Problema</asp:Label>
+        </div>
+        <div class="col-md-5">
+            <asp:TextBox runat="server" ID="txtPesquisa" CssClass="form-control" AutoPostBack="True" />
+        </div>
+        <div class="col-md-5">
+            <asp:Button ID="btPequisa" runat="server" Text="Pesquisar" class="btn btn-primary" OnClick="btPequisa_Click" />
+        </div>
+    </div>
+    <hr />
+    <!---->
+    <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" CssClass="table footable table-responsive table-hover table-striped table-bordered table-checkable table-highlight-head table-no-inner-border table-hover table-condensed">
+        <Columns>
+            <asp:BoundField DataField="CÓDIGO DO PROBLEMA" HeaderText="CÓD. DO PROBLEMA" ItemStyle-Width="200" />
+            <asp:BoundField DataField="PROBLEMA" HeaderText="TÍTULO DO PROBLEMA" ItemStyle-Width="250" />
+            <asp:BoundField DataField="CRIADO EM" HeaderText="CRIADO EM" ItemStyle-Width="150" />
+            <asp:BoundField DataField="ATUALIZADO EM" HeaderText="ATUALIZADO EM" ItemStyle-Width="250" />
+            <asp:BoundField DataField="CRIADO POR" HeaderText="CRIADO POR" ItemStyle-Width="250" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:Button ID="Button1" runat="server" Text="Detalhes" class="btn btn-primary" PostBackUrl='DetalheProblema.aspx'/>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 </asp:Content>

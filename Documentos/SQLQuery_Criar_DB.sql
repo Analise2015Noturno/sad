@@ -31,7 +31,7 @@ create table tbl_problema
 	descricao_problema varchar (800),
 	dt_criacao date,
 	dt_hr_atualizacao datetime,
-	usuario_solucao int not null references tbl_usuario (id_usuario),
+	id_usuario_problema int not null references tbl_usuario (id_usuario),
 )
 
 create table tbl_solucao

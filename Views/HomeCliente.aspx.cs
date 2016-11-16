@@ -9,10 +9,15 @@ public partial class HomeCliente : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        if (Session["UsuarioOnline"] == null)
+            Response.Redirect("/Views/Login.aspx");
+    }
+
+    protected void btPequisa_Click(object sender, EventArgs e)
+    {
         Problema problema = new Problema();
+        problema.TituloProblema = txtPesquisa.Text;
         grdDados.DataSource = problema.Localiza();
         grdDados.DataBind();
-
     }
 }

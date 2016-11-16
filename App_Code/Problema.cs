@@ -43,7 +43,7 @@ public class Problema
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "select * from tbl_problema";
+            cmd.CommandText = "PesquisarProblema "+this.TituloProblema;
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(dt);
