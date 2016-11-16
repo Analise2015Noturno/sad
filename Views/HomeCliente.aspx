@@ -7,7 +7,7 @@
             <asp:Label runat="server" AssociatedControlID="txtPesquisa" CssClass="control-label">Pesquisar Problema</asp:Label>
         </div>
         <div class="col-md-5">
-            <asp:TextBox runat="server" ID="txtPesquisa" CssClass="form-control" AutoPostBack="True" />
+            <asp:TextBox runat="server" ID="txtPesquisa" CssClass="form-control"   />
         </div>
         <div class="col-md-5">
             <asp:Button ID="btPesquisa" runat="server" Text="Pesquisar" class="btn btn-primary" OnClick="btPesquisa_Click" />
