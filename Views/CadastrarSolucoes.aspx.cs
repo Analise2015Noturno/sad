@@ -100,5 +100,6 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             sectionSolucoes.Controls.Add(panel);
 
         }
+        txtDescricao.Value = "";
     }
 }

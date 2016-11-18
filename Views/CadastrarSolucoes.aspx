@@ -12,6 +12,7 @@
             </div>
         </div>
     </div>
+    <hr />
     <div class="row">
         <div runat="server" class="col-md-12" id="sectionSolucoes"></div>
     </div>

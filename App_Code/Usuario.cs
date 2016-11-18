@@ -32,6 +32,7 @@ public class Usuario
     public string Senha { get; set; }
 
     public int Tipo_Usuario { get; set; }
+    public string message { get; set; }
 
     public bool ValidarLogin()
     {
@@ -126,8 +127,9 @@ public class Usuario
 
             return true;
         }
-        catch
+        catch( Exception ex)
         {
+            this.message = ex.Message;
             return false;
         }
     }
