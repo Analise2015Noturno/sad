@@ -37,8 +37,8 @@ public partial class Cadastrar : System.Web.UI.Page
                 user.Bairro = txtBairro.Text;
                 user.Cidade = txtCidade.Text;
                 user.Uf = txtUf.Text;
-                user.Cadastrar();
-                dvCadastroSucesso.Visible = true;
+                if (user.Cadastrar()) dvCadastroSucesso.Visible = true;
+                else { dvCadastroAtencao.Visible = true; dvCadastroAtencao.InnerText += user.message; }
 
             }
             else
