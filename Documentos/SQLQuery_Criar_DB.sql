@@ -55,7 +55,8 @@ create table tbl_feedback
 	id_feedback int not null primary key identity(1,1),
 	detalhe_feedback varchar(255),
 	dt_feedback datetime,
-	id_solucao int not null references tbl_solucao (id_solucao)
+	id_solucao int not null references tbl_solucao (id_solucao),
+	id_usuario int not null references tbl_usuario (id_usuario)
 )
 
 create table tbl_questao
