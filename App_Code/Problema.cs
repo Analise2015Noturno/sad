@@ -20,7 +20,7 @@ public class Problema
 
     public DateTime DataHoraAtualizacao { get; set; }
 
-    public int UsuarioSolucao { get; set; }
+    public int id_usuario_problema { get; set; }
 
     public string message { get; set; }
 
@@ -42,7 +42,7 @@ public class Problema
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "select titulo_problema , descricao_problema , dt_criacao , dt_hr_atualizacao , usuario_solucao from tbl_problema where id_problema = " + codigo;
+            cmd.CommandText = "select titulo_problema , descricao_problema , dt_criacao , dt_hr_atualizacao , id_usuario_problema from tbl_problema where id_problema = " + codigo;
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
@@ -51,7 +51,7 @@ public class Problema
                 this.DescricaoProblema = reader.GetString(1);
                 this.DataCriacao = reader.GetDateTime(2);
                 this.DataHoraAtualizacao = reader.GetDateTime(3);
-                this.UsuarioSolucao = reader.GetInt32(4);
+                this.id_usuario_problema = reader.GetInt32(4);
                 retorno = true;
             }
             else
@@ -66,6 +66,39 @@ public class Problema
             this.message = ex.Message;
         }
         return retorno;
+    }
+
+    public bool Inserir()
+    {
+        string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+        SqlConnection conn = new SqlConnection(conexao);
+        try
+        {
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            cmd.CommandText = "insert into tbl_problema ( titulo_problema , descricao_problema , dt_criacao , id_usuario_problema ) values ( @titulo , @descricao , getDate() , @usuario ) ";
+            cmd.Parameters.Add(new SqlParameter("@titulo",this.TituloProblema));
+            cmd.Parameters.Add(new SqlParameter("@descricao",this.DescricaoProblema));
+            cmd.Parameters.Add(new SqlParameter("@usuario",this.id_usuario_problema));
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            this.message = ex.Message;
+            return false;
+        }
+        finally
+        {
+            if(conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
+        }
     }
 
     public DataTable Localiza()
