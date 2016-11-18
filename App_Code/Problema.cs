@@ -50,7 +50,8 @@ public class Problema
                 this.TituloProblema = reader.GetString(0);
                 this.DescricaoProblema = reader.GetString(1);
                 this.DataCriacao = reader.GetDateTime(2);
-                this.DataHoraAtualizacao = reader.GetDateTime(3);
+                if (!reader.IsDBNull(3))
+                    this.DataHoraAtualizacao = reader.GetDateTime(3);
                 this.id_usuario_problema = reader.GetInt32(4);
                 retorno = true;
             }
@@ -66,6 +67,40 @@ public class Problema
             this.message = ex.Message;
         }
         return retorno;
+    }
+
+    public static List<Problema> carregarProblemas()
+    {
+        List<Problema> problemas = new List<Problema>();
+        try
+        {
+            string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "select titulo_problema , descricao_problema , dt_criacao , dt_hr_atualizacao , id_usuario_problema, id_problema from tbl_problema order by dt_criacao desc ";
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read() )
+            {
+                Problema problema = new Problema();
+                problema.IdProblema = reader.GetInt32(5);
+                problema.TituloProblema = reader.GetString(0);
+                problema.DescricaoProblema = reader.GetString(1);
+                problema.DataCriacao = reader.GetDateTime(2);
+                if (!reader.IsDBNull(3))
+                    problema.DataHoraAtualizacao = reader.GetDateTime(3);
+                problema.id_usuario_problema = reader.GetInt32(4);
+                problemas.Add(problema);
+            }
+            reader.Close();
+            cmd.Dispose();
+            conn.Close();
+        }
+        catch 
+        {
+        }
+        return problemas;
     }
 
     public bool Inserir()
