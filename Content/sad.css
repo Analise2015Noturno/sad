@@ -3,7 +3,14 @@
 }
 
 a {
-    text-decoration:none;
+    text-decoration: none;
+}
+
+.caixaFancy {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px grey;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
 table.superFancyTable {
