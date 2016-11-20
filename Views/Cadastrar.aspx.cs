@@ -74,6 +74,7 @@ public partial class Cadastrar : System.Web.UI.Page
                 txtBairro.Text = ds.Tables[0].Rows[0]["bairro"].ToString().Trim();
                 txtCidade.Text = ds.Tables[0].Rows[0]["localidade"].ToString().Trim();
                 txtUf.Text = ds.Tables[0].Rows[0]["uf"].ToString().Trim();
+                SetFocus(txtNumero);
             }
             else
             {
@@ -81,6 +82,7 @@ public partial class Cadastrar : System.Web.UI.Page
                 txtBairro.Text = "";
                 txtCidade.Text = "";
                 txtUf.Text = "";
+                SetFocus(txtCep);
             }
         }
         else
@@ -90,6 +92,7 @@ public partial class Cadastrar : System.Web.UI.Page
             txtBairro.Text = "";
             txtCidade.Text = "";
             txtUf.Text = "";
+            SetFocus(txtCep);
         }
     }
 
@@ -99,11 +102,13 @@ public partial class Cadastrar : System.Web.UI.Page
         if ( sadLib.ValidaCpf(txtCpf.Text))
         {
             txtCpf.BorderColor = System.Drawing.Color.Green;
+            SetFocus(txtCep);
         }
         else
         {
             txtCpf.Text = "";
             txtCpf.BorderColor = System.Drawing.Color.Red;
+            SetFocus(txtCpf);
         }
     }
 }
