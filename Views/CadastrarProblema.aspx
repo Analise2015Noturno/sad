@@ -8,12 +8,12 @@
                 <h3>Dados do problema</h3>
                 <div class="form-group" runat="server" id="formTitulo">
                     <label for="txtTitulo">Título</label>
-                    <input runat="server" class="form-control" type="text" id="txtTitulo" placeholder="título do problema..." />
+                    <input runat="server" class="form-control" type="text" id="txtTitulo" placeholder="título do problema..." maxlength="80" />
                     <span runat="server" id="helpBlockTitulo" class="help-block"></span>
                 </div>
                 <div class="form-group" runat="server" id="formDescricao">
                     <label for="txtDescricao">Descrição</label>
-                    <textarea runat="server" id="txtDescricao" rows="5" class="form-control" placeholder="descrição do problema..."></textarea>
+                    <textarea runat="server" id="txtDescricao" rows="5" class="form-control" placeholder="descrição do problema..." maxlength="800"></textarea>
                     <span runat="server" id="helpBlockDescricao" class="help-block"></span>
                 </div>
                 <hr />

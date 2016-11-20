@@ -21,14 +21,14 @@
             <div class="col-md-10">
                 <div class="form-group" runat="server" id="formTitulo">
                     <label for="txtQuestao">Questão</label>
-                    <input runat="server" class="form-control" type="text" id="txtQuestao" placeholder="questão do problema..." />
+                    <input runat="server" class="form-control" type="text" id="txtQuestao" placeholder="questão do problema..." maxlength="255" />
                     <span runat="server" id="helpBlockQuestao" class="help-block"></span>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group" runat="server" id="formDescricao">
                     <label for="txtDescricao">Resposta</label>
-                    <input runat="server" type="text" id="txtResposta" class="form-control" placeholder="resposta do problema..." />
+                    <input runat="server" type="number" id="txtResposta" class="form-control" placeholder="resposta do problema..." />
                     <span runat="server" id="helpBlockResposta" class="help-block"></span>
                 </div>
             </div>

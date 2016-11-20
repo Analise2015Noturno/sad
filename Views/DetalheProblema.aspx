@@ -28,7 +28,7 @@
                 <h3>Sua Opinião</h3>
                 <div class="form-group" runat="server" id="sectionFeedBack">
                     <asp:DropDownList runat="server" ID="selSolucoes" CssClass="form-control bottom20"></asp:DropDownList>
-                    <textarea placeholder="sua opinião..." rows="5" class="form-control bottom20" runat="server" id="txtFeedBack"></textarea>
+                    <textarea placeholder="sua opinião..." rows="5" class="form-control bottom20" runat="server" id="txtFeedBack" maxlength="255"></textarea>
                     <asp:Button runat="server" ID="btnGravaFeedBack" OnClick="btnGravaFeedBack_Click" Text="Gravar FeedBack" />
                 </div>
             </div>
