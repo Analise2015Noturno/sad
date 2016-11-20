@@ -7,21 +7,14 @@
 
         <div class="row ">
             <div class="col-md-4 text-center bottom20">
-                <a runat="server" href="~/Views/CadastrarProblema.aspx" class="btn btn-primary btn-lg btn-block">Cadastrar Problema</a>
+                <a runat="server" href="~/Views/CadastrarProblema.aspx" class="btn btn-primary btn-lg btn-block">Manutenção de Problemas</a>
             </div>
             <div class="col-md-4 text-center bottom20">
-                <a runat="server" href="~/Views/CadastrarSolucoes.aspx" class="btn btn-primary btn-lg btn-block">Cadastrar Soluções</a>
+                <a runat="server" href="~/Views/CadastrarSolucoes.aspx" class="btn btn-primary btn-lg btn-block">Manutenção de Soluções</a>
             </div>
             <div class="col-md-4 text-center bottom20">
-                <a runat="server" href="~/Views/CadastrarQuestoes.aspx" class="btn btn-primary btn-lg btn-block">Cadastrar Questões</a>
+                <a runat="server" href="~/Views/CadastrarQuestoes.aspx" class="btn btn-primary btn-lg btn-block">Manutenção de Questões</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <a runat="server" href="~/Views/ManutencaoProblema.aspx" class="btn btn-primary btn-lg btn-block">Manutenção de Problema</a>
-            </div>
-        </div>
-
-
     </div>
 </asp:Content>
