@@ -86,6 +86,9 @@ public partial class DetalheProblema : System.Web.UI.Page
         //mostra todas as soluções do problema
         sectionSolucoes.Controls.Clear();
         List<Solucao> solucoes = Solucao.carregarSolucoes(codigoProblema);
+        Panel row = new Panel();
+        row.CssClass = "row";
+        int iRowController = 0;
         foreach (Solucao solucao in solucoes)
         {
             Panel panel = new Panel();
@@ -99,7 +102,7 @@ public partial class DetalheProblema : System.Web.UI.Page
             link.NavigateUrl = solucao.Link;
             link.Text = solucao.Link;
 
-            panel.CssClass = "col-md-3 text-center bottom20";
+            panel.CssClass = "col-md-4 text-center bottom20";
             coluna.CssClass = "col-md-12 caixaFancy";
             texto.Attributes["class"] = "lead";
 
@@ -107,13 +110,21 @@ public partial class DetalheProblema : System.Web.UI.Page
             coluna.Controls.Add(texto);
             coluna.Controls.Add(link);
             panel.Controls.Add(coluna);
-
-            sectionSolucoes.Controls.Add(panel);
+            row.Controls.Add(panel);
+            //controlador de linhas
+            iRowController++;
+            if (iRowController > 0 && (iRowController % 3) == 0)
+            {
+                sectionSolucoes.Controls.Add(row);
+                row = new Panel();
+                row.CssClass = "row";
+            }
 
             //aproveita para carregar o dropdownlist também
             selSolucoes.Items.Add(new ListItem(solucao.Nome, solucao.Id.ToString()));
 
         }
+        sectionSolucoes.Controls.Add(row);
     }
 
     private void carregarQuestoes(int codigoProblema)

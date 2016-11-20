@@ -23,10 +23,10 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             }
         }
 
-        if(!Page.IsPostBack)
+        if (!Page.IsPostBack)
         {
             List<Problema> problemas = Problema.carregarProblemas();
-            foreach(Problema problema in problemas)
+            foreach (Problema problema in problemas)
             {
                 selProblema.Items.Add(new ListItem(problema.TituloProblema, problema.IdProblema.ToString()));
             }
@@ -53,7 +53,7 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             podeGravar = false;
         }
 
-        if(podeGravar)
+        if (podeGravar)
         {
             Solucao solucao = new Solucao();
             solucao.Nome = txtTitulo.Value;
@@ -75,8 +75,12 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
     {
         sectionSolucoes.Controls.Clear();
         List<Solucao> solucoes = Solucao.carregarSolucoes(codigoProblema);
-        foreach(Solucao solucao in solucoes)
+        Panel row = new Panel();
+        row.CssClass = "row";
+        int iRowController = 0;
+        foreach (Solucao solucao in solucoes)
         {
+
             Panel panel = new Panel();
             Panel coluna = new Panel();
             HtmlGenericControl header = new HtmlGenericControl("h3");
@@ -88,7 +92,7 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             link.NavigateUrl = solucao.Link;
             link.Text = solucao.Link;
 
-            panel.CssClass = "col-md-3 text-center bottom20";
+            panel.CssClass = "col-md-4 text-center bottom20";
             coluna.CssClass = "col-md-12 caixaFancy";
             texto.Attributes["class"] = "lead";
 
@@ -96,10 +100,19 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             coluna.Controls.Add(texto);
             coluna.Controls.Add(link);
             panel.Controls.Add(coluna);
+            row.Controls.Add(panel);
 
-            sectionSolucoes.Controls.Add(panel);
-
+            //controlador de linhas
+            iRowController++;
+            if (iRowController > 0 && (iRowController % 3) == 0)
+            {
+                sectionSolucoes.Controls.Add(row);
+                row = new Panel();
+                row.CssClass = "row";
+            }
         }
+        sectionSolucoes.Controls.Add(row);
+
 
     }
 }
