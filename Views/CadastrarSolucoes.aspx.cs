@@ -64,14 +64,14 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             //decide se vai criar nova solucao ou aletar antiga
             if( txtCodigoSolucao.Value.Equals("") )
             {
-                if (solucao.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Cadastrada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; carregarSolucoes(solucao.IdProblema); }
+                if (solucao.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Cadastrada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; txtCodigoSolucao.Value = ""; carregarSolucoes(solucao.IdProblema); }
                 else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = solucao.message; }
 
             }
             else
             {
                 solucao.Id = int.Parse(txtCodigoSolucao.Value);
-                if (solucao.Alterar()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Alterada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; carregarSolucoes(solucao.IdProblema); }
+                if (solucao.Alterar()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Alterada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; txtCodigoSolucao.Value = ""; carregarSolucoes(solucao.IdProblema); }
                 else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = solucao.message; }
             }
 
@@ -81,6 +81,10 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
 
     protected void selProblema_SelectedIndexChanged(object sender, EventArgs e)
     {
+        txtCodigoSolucao.Value = "";
+        txtTitulo.Value = "";
+        txtDescricao.Value = "";
+        txtUrl.Value = "";            
         carregarSolucoes(int.Parse(selProblema.SelectedValue));
     }
 

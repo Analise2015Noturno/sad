@@ -18,6 +18,7 @@
             <div runat="server" class="col-md-12" id="sectionQuestoes"></div>
         </div>
         <div class="row">
+            <input type="hidden" id="txtCodigoQuestao" runat="server" />
             <div class="col-md-10">
                 <div class="form-group" runat="server" id="formTitulo">
                     <label for="txtQuestao">Questão</label>
@@ -41,5 +42,29 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function apagarQuestao(codigoQuestao, codigoProblema) {
+            if (confirm("Tem certeza que deseja apagar esta questão ?")) {
+                var xmlhttp2 = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
+                xmlhttp2.onreadystatechange = function () {
+                    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+                        __doPostBack("<%# selProblema.ClientID %>", "");
+                    } else { alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger"; }
+                }
+
+                xmlhttp2.open("GET", "<%Response.Write(ResolveUrl("~/Views/ajax/apagarQuestao.aspx"));%>?q=" + codigoQuestao + "&p=" + codigoProblema, true);
+                xmlhttp2.send();
+            }
+        }
+        function editarQuestao(codigo) {
+            txtCodigoQuestao = document.getElementById("<%Response.Write(txtCodigoQuestao.ClientID);%>");
+            txtQuestao = document.getElementById("<%Response.Write(txtQuestao.ClientID);%>");
+            txtResposta = document.getElementById("<%Response.Write(txtResposta.ClientID);%>");
+
+            txtCodigoQuestao.value = codigo;
+            txtQuestao.value = document.getElementById("MainContent_questao" + codigo).innerText;
+            txtResposta.value = document.getElementById("MainContent_resposta" + codigo).innerText;
+        }
+    </script>
 </asp:Content>
 

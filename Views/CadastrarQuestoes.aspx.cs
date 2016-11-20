@@ -72,8 +72,20 @@ public partial class Views_CadastrarQuestoes : System.Web.UI.Page
             questao.questao = txtQuestao.Value;
             questao.resposta = codigoProblema;
             questao.IdProblema = int.Parse(selProblema.SelectedValue);
-            if (questao.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Cadastrada com Sucesso."; txtQuestao.Value = ""; txtResposta.Value = ""; carregarQuestoes(questao.IdProblema); }
-            else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = questao.message; }
+
+            //decide se vai criar um novo registro ou altear um registro antigo
+            if (txtCodigoQuestao.Value.Equals(""))
+            {
+                if (questao.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Cadastrada com Sucesso."; txtQuestao.Value = ""; txtResposta.Value = ""; txtCodigoQuestao.Value = ""; carregarQuestoes(questao.IdProblema); }
+                else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = questao.message; }
+            }
+            else
+            {
+                questao.id_questao = int.Parse(txtCodigoQuestao.Value);
+                if (questao.Alterar()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Alterada com Sucesso."; txtQuestao.Value = ""; txtResposta.Value = ""; txtCodigoQuestao.Value = ""; carregarQuestoes(questao.IdProblema); }
+                else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = questao.message; }
+            }
+
         }
     }
 
@@ -91,10 +103,12 @@ public partial class Views_CadastrarQuestoes : System.Web.UI.Page
         TableHeaderRow rh = new TableHeaderRow();
         TableHeaderCell hc1 = new TableHeaderCell();
         TableHeaderCell hc2 = new TableHeaderCell();
+        TableHeaderCell hc3 = new TableHeaderCell();
         hc1.Text = "Questão";
         hc2.Text = "Resposta";
         rh.Controls.Add(hc1);
         rh.Controls.Add(hc2);
+        rh.Controls.Add(hc3);
         table.Controls.Add(rh);
 
         foreach (Questao questao in questoes)
@@ -102,12 +116,33 @@ public partial class Views_CadastrarQuestoes : System.Web.UI.Page
             TableRow row = new TableRow();
             TableCell cellQuestao = new TableCell();
             TableCell cellResposta = new TableCell();
+            TableCell cellToolbar = new TableCell();
+
+            //prepara toolbar
+            HyperLink linkApagar = new HyperLink();
+            HyperLink linkEditar = new HyperLink();
+            HtmlGenericControl editar = new HtmlGenericControl("span");
+            HtmlGenericControl apagar = new HtmlGenericControl("span");
+            linkApagar.NavigateUrl = "javascript:apagarQuestao(" + questao.id_questao + " , " + questao.IdProblema + ");";
+            linkEditar.NavigateUrl = "javascript:editarQuestao(" + questao.id_questao + ");";
+            editar.Attributes["class"] = "glyphicon glyphicon-pencil ";
+            apagar.Attributes["class"] = "glyphicon glyphicon-trash";
+            linkApagar.Controls.Add(apagar);
+            linkEditar.Controls.Add(editar);
+            linkEditar.Attributes.CssStyle.Add("margin-right", "10px;");
+            cellToolbar.Attributes["class"] = "text-center";
+
 
             cellQuestao.Text = questao.questao;
+            cellQuestao.ID = "questao" + questao.id_questao;
             cellResposta.Text = questao.resposta.ToString();
+            cellResposta.ID = "resposta" + questao.id_questao;
+            cellToolbar.Controls.Add(linkEditar);
+            cellToolbar.Controls.Add(linkApagar);
 
             row.Controls.Add(cellQuestao);
             row.Controls.Add(cellResposta);
+            row.Controls.Add(cellToolbar);
 
             table.Controls.Add(row);
             table.CssClass = "superFancyTable bottom20";
