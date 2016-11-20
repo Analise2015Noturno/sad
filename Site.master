@@ -15,7 +15,6 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
     <form runat="server">
         <div>
             <nav class="navbar navbar-inverse">
@@ -46,9 +45,7 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </div>
         </div>
-        <div class="container">
-        </div>
-        <div class="container body-content">
+        <div class="container-fluid body-content">
             <hr />
             <footer>
                 <p><%: DateTime.Now.Year %> - Super S.A.D.</p>
