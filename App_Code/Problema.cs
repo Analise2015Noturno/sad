@@ -22,6 +22,36 @@ public class Problema
 
     public int id_usuario_problema { get; set; }
 
+    public bool Apagar()
+    {
+        string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+        SqlConnection conn = new SqlConnection(conexao);
+        try
+        {
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //apaga da tabela problema 
+            cmd.CommandText = "delete from tbl_problema where id_problema = " + this.IdProblema;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            this.message = ex.Message;
+            return false;
+        }
+        finally
+        {
+            if (conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
+        }
+    }
+
     public string message { get; set; }
 
 
@@ -133,6 +163,39 @@ public class Problema
         finally
         {
             if(conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
+        }
+    }
+
+    public bool Alterar()
+    {
+        string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+        SqlConnection conn = new SqlConnection(conexao);
+        try
+        {
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            cmd.CommandText = "update tbl_problema set titulo_problema  = @titulo , descricao_problema = @descricao ,  dt_hr_atualizacao = getDate() , id_usuario_problema = @usuario where id_problema = " + this.IdProblema ;
+            cmd.Parameters.Add(new SqlParameter("@titulo", this.TituloProblema));
+            cmd.Parameters.Add(new SqlParameter("@descricao", this.DescricaoProblema));
+            cmd.Parameters.Add(new SqlParameter("@usuario", this.id_usuario_problema));
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            this.message = ex.Message;
+            return false;
+        }
+        finally
+        {
+            if (conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
         }
     }
 
