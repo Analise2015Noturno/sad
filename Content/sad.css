@@ -13,6 +13,18 @@ a {
     border-radius: 5px;
 }
 
+.toolbar {
+    background-color:#ddd;
+    padding:0px !important;
+    text-align:right;
+    margin:0px !important;
+}
+.toolbar span{
+    color:gray !important;
+    margin-right:10px !important;
+    margin-top:5px;
+}
+
 table.superFancyTable {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;

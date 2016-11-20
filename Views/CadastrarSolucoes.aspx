@@ -18,6 +18,7 @@
             <div runat="server" class="col-md-12" id="sectionSolucoes"></div>
         </div>
         <div class="row">
+            <input type="hidden" id="txtCodigoSolucao" runat="server" />
             <div class="col-md-12">
                 <div class="form-group" runat="server" id="formTitulo">
                     <label for="txtNome">Nome</label>
@@ -40,5 +41,31 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function apagarSolucao(codigoSolucao, codigoProblema) {
+            if (confirm("Tem certeza que deseja apagar esta solução ?")) {
+                var xmlhttp2 = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
+                xmlhttp2.onreadystatechange = function () {
+                    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+                        __doPostBack("<%# selProblema.ClientID %>", "");
+                    } else { alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger"; }
+                }
+
+                xmlhttp2.open("GET", "<%Response.Write(ResolveUrl("~/Views/ajax/apagarSolucao.aspx"));%>?s=" + codigoSolucao + "&p=" + codigoProblema, true);
+                xmlhttp2.send();
+            }
+        }
+        function editarSolucao(codigo) {
+            txtCodigoSolucao = document.getElementById("<%Response.Write(txtCodigoSolucao.ClientID);%>");
+            txtTitulo = document.getElementById("<%Response.Write(txtTitulo.ClientID);%>");
+            txtDescricao = document.getElementById("<%Response.Write(txtDescricao.ClientID);%>");
+            txtUrl = document.getElementById("<%Response.Write(txtUrl.ClientID);%>");
+
+            txtCodigoSolucao.value = codigo;
+            txtTitulo.value = document.getElementById("MainContent_header" + codigo).innerText;
+            txtDescricao.value =  document.getElementById("MainContent_texto" + codigo).innerText;
+            txtUrl.value =  document.getElementById("MainContent_link" + codigo).innerText;
+        }
+    </script>
 </asp:Content>
 

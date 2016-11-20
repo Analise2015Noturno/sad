@@ -60,8 +60,21 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             solucao.Descricao = txtDescricao.Value;
             solucao.Link = txtUrl.Value;
             solucao.IdProblema = int.Parse(selProblema.SelectedValue);
-            if (solucao.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Cadastrada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; carregarSolucoes(solucao.IdProblema); }
-            else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = solucao.message; }
+
+            //decide se vai criar nova solucao ou aletar antiga
+            if( txtCodigoSolucao.Value.Equals("") )
+            {
+                if (solucao.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Cadastrada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; carregarSolucoes(solucao.IdProblema); }
+                else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = solucao.message; }
+
+            }
+            else
+            {
+                solucao.Id = int.Parse(txtCodigoSolucao.Value);
+                if (solucao.Alterar()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Solução Alterada com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtUrl.Value = ""; carregarSolucoes(solucao.IdProblema); }
+                else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = solucao.message; }
+            }
+
         }
 
     }
@@ -87,15 +100,38 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
             HtmlGenericControl texto = new HtmlGenericControl("p");
             HyperLink link = new HyperLink();
 
+            //para texto da solucao
             header.InnerText = solucao.Nome;
+            header.ID = "header" + solucao.Id;
             texto.InnerText = solucao.Descricao;
+            texto.ID = "texto" + solucao.Id;
             link.NavigateUrl = solucao.Link;
             link.Text = solucao.Link;
+            link.ID = "link" + solucao.Id;
 
+            //prepara toolbar
+            HtmlGenericControl toolbar = new HtmlGenericControl("div");
+            HyperLink linkApagar = new HyperLink();
+            HyperLink linkEditar = new HyperLink();
+            HtmlGenericControl editar = new HtmlGenericControl("span");
+            HtmlGenericControl apagar = new HtmlGenericControl("span");
+            linkApagar.NavigateUrl="javascript:apagarSolucao(" + solucao.Id +" , " + solucao.IdProblema +");";
+            linkEditar.NavigateUrl = "javascript:editarSolucao(" + solucao.Id + ");";
+            editar.Attributes["class"] = "glyphicon glyphicon-pencil ";
+            apagar.Attributes["class"] = "glyphicon glyphicon-trash";
+            toolbar.Attributes["class"] = "toolbar";
+            linkApagar.Controls.Add(apagar);
+            linkEditar.Controls.Add(editar);
+            toolbar.Controls.Add(linkEditar);
+            toolbar.Controls.Add(linkApagar);
+
+            //prepara formatação das colunas
             panel.CssClass = "col-md-4 text-center bottom20";
-            coluna.CssClass = "col-md-12 caixaFancy";
+            coluna.CssClass = "caixaFancy";
             texto.Attributes["class"] = "lead";
 
+            //adiciona todos os controles na ordem certa
+            coluna.Controls.Add(toolbar);
             coluna.Controls.Add(header);
             coluna.Controls.Add(texto);
             coluna.Controls.Add(link);

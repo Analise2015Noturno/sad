@@ -35,6 +35,7 @@ public class Solucao
                 solucao.Nome = reader.GetString(1);
                 solucao.Link = reader.GetString(2);
                 solucao.Descricao = reader.GetString(3);
+                solucao.IdProblema = codigoProblema;
                 solucoes.Add(solucao);
             }
             reader.Close();
@@ -45,6 +46,73 @@ public class Solucao
         {
         }
         return solucoes;
+    }
+
+    public bool apagar()
+    {
+        string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+        SqlConnection conn = new SqlConnection(conexao);
+        try
+        {
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //apaga da tabela problema_ solucao
+            cmd.CommandText = "delete from tbl_problema_solucao where id_solucao = " + this.Id + " and id_problema = " + this.IdProblema;
+            cmd.ExecuteNonQuery();
+
+            //apaga da tabela solucao
+            cmd.CommandText = "delete from tbl_solucao where id_solucao = " + this.Id;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            this.message = ex.Message;
+            return false;
+        }
+        finally
+        {
+            if (conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
+        }
+    }
+
+    public bool Alterar()
+    {
+        string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+        SqlConnection conn = new SqlConnection(conexao);
+        try
+        {
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //altera solucao
+            cmd.CommandText = "update tbl_solucao set nome = @nome, link_acesso = @link , descricao_solucao = @descricao where id_solucao = " + this.Id;
+            cmd.Parameters.Add(new SqlParameter("@nome", this.Nome));
+            cmd.Parameters.Add(new SqlParameter("@link", this.Link));
+            cmd.Parameters.Add(new SqlParameter("@descricao", this.Descricao));
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            this.message = ex.Message;
+            return false;
+        }
+        finally
+        {
+            if (conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
+        }
     }
 
     public bool Inserir()
