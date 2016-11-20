@@ -49,6 +49,7 @@ public class Usuario
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "select * from tbl_usuario where senha='" + this.Senha + "' and (email = '" + this.Email + "' or cpf = '" + this.Cpf + "')";
+            cmd.ExecuteNonQuery();
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(dt);
@@ -94,6 +95,7 @@ public class Usuario
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "select * from tbl_usuario where cpf = '" + this.Cpf + "' or email ='" + this.Email + "'";
+            cmd.ExecuteNonQuery();
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(dt);
