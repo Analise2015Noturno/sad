@@ -91,6 +91,10 @@ public partial class Views_CadastrarQuestoes : System.Web.UI.Page
 
     protected void selProblema_SelectedIndexChanged(object sender, EventArgs e)
     {
+        txtCodigoQuestao.Value = "";
+        txtQuestao.Value = "";
+        txtResposta.Value = "";
+        alerta.Attributes["class"] = "invisible";
         carregarQuestoes(int.Parse(selProblema.SelectedValue));
     }
 

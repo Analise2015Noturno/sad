@@ -13,10 +13,6 @@
                 </div>
             </div>
         </div>
-        <hr />
-        <div class="row">
-            <div runat="server" class="col-md-12" id="sectionQuestoes"></div>
-        </div>
         <div class="row">
             <input type="hidden" id="txtCodigoQuestao" runat="server" />
             <div class="col-md-10">
@@ -40,6 +36,10 @@
                     <asp:Button CssClass="btn btn-default" ID="btnGravarQuestao" runat="server" OnClick="btnGravarQuestao_Click" Text="Gravar Questão" />
                 </div>
             </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div runat="server" class="col-md-12" id="sectionQuestoes"></div>
         </div>
     </div>
     <script type="text/javascript">

@@ -33,8 +33,13 @@ public partial class DetalheProblema : System.Web.UI.Page
                 //mostra os detalhes do problema
                 titulo.InnerText = problema.TituloProblema;
                 descricao.InnerHtml = problema.DescricaoProblema.Replace(Environment.NewLine, "<br />");
-                if (problema.DataHoraAtualizacao.Year != 1) atualizacao.InnerText = problema.DataHoraAtualizacao.ToShortDateString() + " " + problema.DataHoraAtualizacao.ToShortTimeString();
-                else sectionAtualizacao.Attributes["class"] = "invisible";
+                if (problema.DataHoraAtualizacao.Year != 1)
+                {
+                    atualizacao.InnerText = problema.DataHoraAtualizacao.ToShortDateString() + " " + problema.DataHoraAtualizacao.ToShortTimeString();
+                    sectionAtualizacao.Attributes["class"] = "col-md-12";
+                }
+                else sectionAtualizacao.Attributes.CssStyle["display"] = "none";
+                
                 linha.Attributes["class"] = "row";
 
                 carregarSolucoes(codigo);

@@ -84,7 +84,8 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
         txtCodigoSolucao.Value = "";
         txtTitulo.Value = "";
         txtDescricao.Value = "";
-        txtUrl.Value = "";            
+        txtUrl.Value = "";
+        alerta.Attributes["class"] = "invisible";
         carregarSolucoes(int.Parse(selProblema.SelectedValue));
     }
 

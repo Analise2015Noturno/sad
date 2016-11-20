@@ -4,21 +4,25 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div class="container">
-        <div class="invisible" role="alert" runat="server" id="alerta"></div>
-
-        <div class="invisible" runat="server" id="linha">
-            <div class="col-md-12">
-                <h1 runat="server" id="titulo"></h1>
+    <div class="invisible" role="alert" runat="server" id="alerta">
+    </div>
+    <div class="invisible" runat="server" id="linha">
+        <div class="container-fluid bottom20" style="background-color: #dcdcdc">
+            <div class="container">
+                <div class="col-md-12">
+                    <h1 runat="server" id="titulo"></h1>
+                </div>
+                <div class="col-md-12">
+                    <h3>Descrição</h3>
+                    <p class="lead" runat="server" id="descricao"></p>
+                </div>
+                <div class="invisible" runat="server" id="sectionAtualizacao">
+                    <h3>Última Atualização</h3>
+                    <p class="lead" runat="server" id="atualizacao"></p>
+                </div>
             </div>
-            <div class="col-md-12">
-                <h3>Descrição</h3>
-                <p class="lead" runat="server" id="descricao"></p>
-            </div>
-            <div class="col-md-12" runat="server" id="sectionAtualizacao">
-                <h3>Última Atualização</h3>
-                <p class="lead" runat="server" id="atualizacao"></p>
-            </div>
+        </div>
+        <div class="container">
             <div class="col-md-12" runat="server" id="sectionSolucoes">
             </div>
             <div class="col-md-12">
@@ -35,7 +39,6 @@
             <div class="col-md-12">
                 <asp:Panel ID="panelFeedBacks" runat="server"></asp:Panel>
             </div>
-
         </div>
     </div>
 </asp:Content>

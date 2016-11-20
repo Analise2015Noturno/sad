@@ -30,5 +30,11 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <asp:Panel runat="server" ID="panelProblemas"></asp:Panel>
+            </div>
+        </div>
     </div>
 </asp:Content>

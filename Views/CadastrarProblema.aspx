@@ -17,7 +17,6 @@
                     <textarea runat="server" id="txtDescricao" rows="5" class="form-control" placeholder="descrição do problema..." maxlength="800"></textarea>
                     <span runat="server" id="helpBlockDescricao" class="help-block"></span>
                 </div>
-                <hr />
                 <div class="form-group">
                     <asp:Button CssClass="btn btn-default" ID="btnGravarProblema" runat="server" OnClick="btnGravarProblema_Click" Text="Gravar Problema" />
                 </div>
