@@ -16,7 +16,7 @@
         </div>
         <hr />
         <!---->
-        <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" CssClass="table footable table-responsive table-hover table-striped table-bordered table-checkable table-highlight-head table-no-inner-border table-hover table-condensed">
+        <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" CssClass="superFancyTable">
             <Columns>
                 <asp:BoundField DataField="CÓDIGO DO PROBLEMA" HeaderText="CÓD. DO PROBLEMA" ItemStyle-Width="200" />
                 <asp:BoundField DataField="PROBLEMA" HeaderText="TÍTULO DO PROBLEMA" ItemStyle-Width="250" />
