@@ -32,39 +32,40 @@ public partial class HomeCliente : System.Web.UI.Page
         Table table = new Table();
         table.CssClass = "superFancyTable";
         TableHeaderRow hr = new TableHeaderRow();
+        TableHeaderCell hc0 = new TableHeaderCell();
         TableHeaderCell hc1 = new TableHeaderCell();
-        TableHeaderCell hc2 = new TableHeaderCell();
         TableHeaderCell hc3 = new TableHeaderCell();
         hc1.Text = "Problema";
-        hc2.Text = "Descrição";
+        hr.Controls.Add(hc0);
         hr.Controls.Add(hc1);
-        hr.Controls.Add(hc2);
         hr.Controls.Add(hc3);
         table.Controls.Add(hr);
         List<Problema> problemas = Problema.carregarProblemas();
         foreach (Problema problema in problemas)
         {
             TableRow row = new TableRow();
-            TableCell cellNome = new TableCell();
-            TableCell cellDescricao = new TableCell();
+            TableCell cellProblema = new TableCell();
             TableCell cellToolbar = new TableCell();
+            TableCell cellInicio = new TableCell();
 
-            //prepara toolbar
-            //prepara toolbar
+            //prepara botões
             HyperLink linkDetalhes = new HyperLink();
+            HyperLink linkIniciar = new HyperLink();
+            linkIniciar.NavigateUrl = ResolveUrl("~/Views/IniciarProblema.aspx") + "?codigo=" + problema.IdProblema;
             linkDetalhes.NavigateUrl = ResolveUrl("~/Views/DetalheProblema.aspx") + "?codigo=" + problema.IdProblema;
+            linkIniciar.CssClass = "btn btn-success";
             linkDetalhes.CssClass = "btn btn-primary";
+            linkIniciar.Text = "Iniciar";
             linkDetalhes.Text = "Detalhes";
+            cellInicio.Controls.Add(linkIniciar);
             cellToolbar.Controls.Add(linkDetalhes);
 
-            cellNome.Text = problema.TituloProblema;
-            cellNome.ID = "titulo" + problema.IdProblema;
-            cellDescricao.Text = problema.DescricaoProblema;
-            cellDescricao.ID = "descricao" + problema.IdProblema;
+            cellProblema.Text = "<p style='font-size:110%;font-weight:bold;' >" + problema.TituloProblema + "</p>" + problema.DescricaoProblema;
+            cellProblema.CssClass = "text-left";
             cellToolbar.CssClass = "text-center";
 
-            row.Controls.Add(cellNome);
-            row.Controls.Add(cellDescricao);
+            row.Controls.Add(cellInicio);
+            row.Controls.Add(cellProblema);
             row.Controls.Add(cellToolbar);
 
             table.Controls.Add(row);

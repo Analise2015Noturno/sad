@@ -11,14 +11,11 @@
             <div class="container">
                 <div class="col-md-12">
                     <h1 runat="server" id="titulo"></h1>
-                </div>
-                <div class="col-md-12">
-                    <h3>Descrição</h3>
                     <p class="lead" runat="server" id="descricao"></p>
                 </div>
                 <div class="invisible" runat="server" id="sectionAtualizacao">
-                    <h3>Última Atualização</h3>
-                    <p class="lead" runat="server" id="atualizacao"></p>
+                    <span>Última Atualização : </span>
+                    <span runat="server" id="atualizacao"></span>
                 </div>
             </div>
         </div>
