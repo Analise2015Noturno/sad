@@ -30,14 +30,21 @@
                     <textarea runat="server" id="txtDescricao" rows="5" class="form-control" placeholder="descrição do problema..." maxlength="255"></textarea>
                     <span runat="server" id="helpBlockDescricao" class="help-block"></span>
                 </div>
+            </div>
+            <div class="col-md-8">
                 <div class="form-group" runat="server" id="formUrl">
-                    <label for="txtUrl">Endereço na Internet (url)</label>
+                    <label for="txtUrl">Endereço na Internet~/URL (opcional)</label>
                     <input runat="server" class="form-control" type="text" id="txtUrl" placeholder="http://..." maxlength="255" />
-                    <span runat="server" id="helpBlockUrl" class="help-block"></span>
                 </div>
-                <div class="form-group">
-                    <asp:Button CssClass="btn btn-default" ID="btnGravarSolucao" runat="server" OnClick="btnGravarSolucao_Click" Text="Gravar Solução" />
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" runat="server" id="Div1">
+                    <label for="txtUrl">Imagem da Solução (opcional)</label>
+                    <asp:FileUpload ID="imagemSolucao" class="form-control" runat="server"  />
                 </div>
+            </div>
+            <div class="form-group">
+                <asp:Button CssClass="btn btn-default" ID="btnGravarSolucao" runat="server" OnClick="btnGravarSolucao_Click" Text="Gravar Solução" />
             </div>
         </div>
     </div>
@@ -63,8 +70,8 @@
 
             txtCodigoSolucao.value = codigo;
             txtTitulo.value = document.getElementById("MainContent_header" + codigo).innerText;
-            txtDescricao.value =  document.getElementById("MainContent_texto" + codigo).innerText;
-            txtUrl.value =  document.getElementById("MainContent_link" + codigo).innerText;
+            txtDescricao.value = document.getElementById("MainContent_texto" + codigo).innerText;
+            txtUrl.value = document.getElementById("MainContent_link" + codigo).innerText;
         }
     </script>
 </asp:Content>

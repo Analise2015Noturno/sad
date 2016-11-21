@@ -98,6 +98,7 @@ public partial class DetalheProblema : System.Web.UI.Page
         {
             Panel panel = new Panel();
             Panel coluna = new Panel();
+            Image image = new Image();
             HtmlGenericControl header = new HtmlGenericControl("h3");
             HtmlGenericControl texto = new HtmlGenericControl("p");
             HyperLink link = new HyperLink();
@@ -107,10 +108,23 @@ public partial class DetalheProblema : System.Web.UI.Page
             link.NavigateUrl = solucao.Link;
             link.Text = solucao.Link;
 
+            //verifica se tem imagem e adiciona
+            string caminho = Server.MapPath("~/img/problemas/" + solucao.IdProblema + "/" + solucao.Id);
+            if (System.IO.Directory.Exists(caminho))
+                foreach (string arquivoImagem in System.IO.Directory.GetFiles(caminho))
+                {
+                    var urlPath = new Uri(@arquivoImagem);
+                    var urlRoot = new Uri(Server.MapPath("~") + "/");
+                    string relative = urlRoot.MakeRelativeUri(urlPath).ToString();
+                    image.ImageUrl = ResolveUrl(relative);
+                }
+
             panel.CssClass = "col-md-4 text-center bottom20";
             coluna.CssClass = "col-md-12 caixaFancy";
             texto.Attributes["class"] = "lead";
+            image.CssClass = "img-responsive center-block imagemSolucao";
 
+            if (!image.ImageUrl.Equals("")) coluna.Controls.Add(image);
             coluna.Controls.Add(header);
             coluna.Controls.Add(texto);
             coluna.Controls.Add(link);

@@ -128,16 +128,17 @@ public class Solucao
             cmd.Connection = conn;
 
             //insere solucao
-            cmd.CommandText = "insert into tbl_solucao ( nome, link_acesso, descricao_solucao ) values ( @nome , @link , @descricao ) ";
+            cmd.CommandText = "insert into tbl_solucao ( nome, link_acesso, descricao_solucao ) OUTPUT INSERTED.ID_SOLUCAO  values ( @nome , @link , @descricao ) ";
             cmd.Parameters.Add(new SqlParameter("@nome", this.Nome));
             cmd.Parameters.Add(new SqlParameter("@link", this.Link));
             cmd.Parameters.Add(new SqlParameter("@descricao", this.Descricao));
-            cmd.ExecuteNonQuery();
+            this.Id = int.Parse( cmd.ExecuteScalar().ToString() );
 
             //insere solucao_problema
             cmd.Parameters.Clear();
-            cmd.CommandText = " insert into tbl_problema_solucao ( id_problema, id_solucao ) select @problema, max(id_solucao) from tbl_solucao  ";
+            cmd.CommandText = " insert into tbl_problema_solucao ( id_problema, id_solucao ) values ( @problema, @codigo )  ";
             cmd.Parameters.Add(new SqlParameter("@problema", this.IdProblema));
+            cmd.Parameters.Add(new SqlParameter("@codigo", this.Id));
             cmd.ExecuteNonQuery();
 
             conn.Close();
