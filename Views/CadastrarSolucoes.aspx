@@ -22,12 +22,12 @@
             <div class="col-md-12">
                 <div class="form-group" runat="server" id="formTitulo">
                     <label for="txtNome">Nome</label>
-                    <input runat="server" class="form-control" type="text" id="txtTitulo" placeholder="título do problema..." maxlength="80" />
+                    <input runat="server" class="form-control" type="text" id="txtTitulo" placeholder="título da solução..." maxlength="80" />
                     <span runat="server" id="helpBlockTitulo" class="help-block"></span>
                 </div>
                 <div class="form-group" runat="server" id="formDescricao">
                     <label for="txtDescricao">Descrição</label>
-                    <textarea runat="server" id="txtDescricao" rows="5" class="form-control" placeholder="descrição do problema..." maxlength="255"></textarea>
+                    <textarea runat="server" id="txtDescricao" rows="5" class="form-control" placeholder="descrição da solução..." maxlength="255"></textarea>
                     <span runat="server" id="helpBlockDescricao" class="help-block"></span>
                 </div>
             </div>
