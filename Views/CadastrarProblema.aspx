@@ -35,14 +35,20 @@
                 var xmlhttp2 = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
                 xmlhttp2.onreadystatechange = function () {
                     if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-                        window.location.reload(true);
-                    } else { alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger"; }
+                        if (xmlhttp2.responseText.includes("DEL-PROB-OK")) {
+                            location.assign("<%Response.Write(ResolveUrl("~/Views/CadastrarProblema.aspx"));%>");
+                        } else {
+                            alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger";
+                        }
+                    }
                 }
 
                 xmlhttp2.open("GET", "<%Response.Write(ResolveUrl("~/Views/ajax/apagarProblema.aspx"));%>?p=" + codigoProblema, true);
                 xmlhttp2.send();
             }
         }
+    </script>
+    <script type="text/javascript">
         function editarProblema(codigo) {
             txtCodigoProblema = document.getElementById("<%Response.Write(txtCodigoProblema.ClientID);%>");
             txtTitulo = document.getElementById("<%Response.Write(txtTitulo.ClientID);%>");

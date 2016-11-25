@@ -40,7 +40,7 @@
             <div class="col-md-4">
                 <div class="form-group" runat="server" id="Div1">
                     <label for="txtUrl">Imagem da Solução (opcional)</label>
-                    <asp:FileUpload ID="imagemSolucao" class="form-control" runat="server"  />
+                    <asp:FileUpload ID="imagemSolucao" class="form-control" runat="server" />
                 </div>
             </div>
             <div class="form-group">
@@ -53,11 +53,10 @@
             if (confirm("Tem certeza que deseja apagar esta solução ?")) {
                 var xmlhttp2 = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
                 xmlhttp2.onreadystatechange = function () {
-                    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-                        __doPostBack("<%# selProblema.ClientID %>", "");
+                    if (xmlhttp2.responseText.includes("DEL-SOL-OK")) {
+                        <%Response.Write(selProblema.ClientID);%>.onchange();
                     } else { alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger"; }
                 }
-
                 xmlhttp2.open("GET", "<%Response.Write(ResolveUrl("~/Views/ajax/apagarSolucao.aspx"));%>?s=" + codigoSolucao + "&p=" + codigoProblema, true);
                 xmlhttp2.send();
             }

@@ -33,6 +33,14 @@ public class Problema
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
+            //verifica se existe solucão ou questão cadastrada para esse problema
+            cmd.CommandText = "select isnull(q.id_problema,0) + isnull(s.id_problema,0) from tbl_problema p  left join tbl_questionario q on q.id_problema = p.id_problema left join tbl_problema_solucao s on s.id_problema = p.id_problema where p.id_problema = " + this.IdProblema;
+            int resultado = int.Parse(cmd.ExecuteScalar().ToString());
+            if (resultado >0)
+            {
+                throw new Exception("Por favor, primeiramente apague todas as soluções ou questões deste problema.");
+            }
+
             //apaga da tabela problema 
             cmd.CommandText = "delete from tbl_problema where id_problema = " + this.IdProblema;
             cmd.ExecuteNonQuery();

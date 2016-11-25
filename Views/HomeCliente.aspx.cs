@@ -51,7 +51,7 @@ public partial class HomeCliente : System.Web.UI.Page
             //prepara botões
             HyperLink linkDetalhes = new HyperLink();
             HyperLink linkIniciar = new HyperLink();
-            linkIniciar.NavigateUrl = ResolveUrl("~/Views/IniciarProblema.aspx") + "?codigo=" + problema.IdProblema;
+            linkIniciar.NavigateUrl = ResolveUrl("~/Views/IniciarProblema.aspx") + "?p=" + problema.IdProblema;
             linkDetalhes.NavigateUrl = ResolveUrl("~/Views/DetalheProblema.aspx") + "?codigo=" + problema.IdProblema;
             linkIniciar.CssClass = "btn btn-success";
             linkDetalhes.CssClass = "btn btn-primary";

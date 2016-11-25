@@ -25,7 +25,7 @@
             <div class="col-md-2">
                 <div class="form-group" runat="server" id="formDescricao">
                     <label for="txtDescricao">Resposta</label>
-                    <input runat="server" type="number" id="txtResposta" class="form-control" placeholder="resposta do problema..." />
+                    <input runat="server" type="number" min="0" max="10" id="txtResposta" class="form-control" placeholder="resposta do problema..." />
                     <span runat="server" id="helpBlockResposta" class="help-block"></span>
                 </div>
             </div>
@@ -42,20 +42,26 @@
             <div runat="server" class="col-md-12" id="sectionQuestoes"></div>
         </div>
     </div>
+
     <script type="text/javascript">
         function apagarQuestao(codigoQuestao, codigoProblema) {
             if (confirm("Tem certeza que deseja apagar esta questão ?")) {
                 var xmlhttp2 = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
                 xmlhttp2.onreadystatechange = function () {
                     if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-                        __doPostBack("<%# selProblema.ClientID %>", "");
-                    } else { alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger"; }
+                        if (xmlhttp2.responseText.includes("DEL-QUS-OK")) {
+                            <%Response.Write(alerta.ClientID);%>.className="invisible";
+                            <%Response.Write(selProblema.ClientID);%>.onchange();
+                        } else { alerta = document.getElementById("<%Response.Write(alerta.ClientID);%>"); alerta.innerText = xmlhttp2.responseText; alerta.className = "alert alert-danger"; }
+                    }
                 }
-
                 xmlhttp2.open("GET", "<%Response.Write(ResolveUrl("~/Views/ajax/apagarQuestao.aspx"));%>?q=" + codigoQuestao + "&p=" + codigoProblema, true);
                 xmlhttp2.send();
             }
         }
+        
+    </script>
+    <script type="text/javascript">
         function editarQuestao(codigo) {
             txtCodigoQuestao = document.getElementById("<%Response.Write(txtCodigoQuestao.ClientID);%>");
             txtQuestao = document.getElementById("<%Response.Write(txtQuestao.ClientID);%>");

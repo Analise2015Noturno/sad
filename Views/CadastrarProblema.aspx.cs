@@ -59,7 +59,7 @@ public partial class CadastrarProblema : System.Web.UI.Page
             problema.id_usuario_problema = ((Usuario)Session["UsuarioOnline"]).IdUsuario;
 
             //decide se vai gravar novo problema ou alterar problema já existent
-            if (txtCodigoProblema.Equals(""))
+            if (txtCodigoProblema.Value.Equals(""))
             {
                 if (problema.Inserir()) { alerta.Attributes["class"] = "alert alert-success bottom20"; alerta.InnerText = "Problema Cadastrado com Sucesso."; txtTitulo.Value = ""; txtDescricao.Value = ""; txtCodigoProblema.Value = ""; }
                 else { alerta.Attributes["class"] = "alert alert-danger bottom20"; alerta.InnerText = problema.message; }

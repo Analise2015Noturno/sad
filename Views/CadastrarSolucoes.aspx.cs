@@ -145,6 +145,7 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
 
     protected void selProblema_SelectedIndexChanged(object sender, EventArgs e)
     {
+        alerta.Attributes["class"] = "invisible";
         txtCodigoSolucao.Value = "";
         txtTitulo.Value = "";
         txtDescricao.Value = "";
@@ -235,4 +236,7 @@ public partial class Views_CadastrarSolucoes : System.Web.UI.Page
 
 
     }
+
+
+
 }

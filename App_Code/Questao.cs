@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -156,4 +157,29 @@ public class Questao
             if (conn.State.Equals(System.Data.ConnectionState.Open)) conn.Close();
         }
     }
+
+
+    public DataTable Localiza()
+    {
+        DataTable dt = new DataTable();
+        try
+        {
+            string conexao = System.Configuration.ConfigurationManager.AppSettings["conexao"];
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "select b.questao, b.resposta, b.id_questao, a.id_problema from tbl_questionario a inner join tbl_questao b on b.id_questao = a.id_questão where a.id_problema = " + this.IdProblema;
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(dt);
+        }
+        catch
+        {
+
+        }
+
+        return dt;
+    }
+
 }

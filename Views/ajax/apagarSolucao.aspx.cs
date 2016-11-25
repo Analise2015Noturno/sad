@@ -11,32 +11,27 @@ public partial class Views_ajax_apagarSolucao : System.Web.UI.Page
     {
         int codigoSolucao;
         int codigoProblema;
+        Solucao solucao = new Solucao();
         try
         {
             codigoSolucao = int.Parse(Request["s"]);
             codigoProblema = int.Parse(Request["p"]);
-            Solucao solucao = new Solucao();
             solucao.Id = codigoSolucao;
             solucao.IdProblema = codigoProblema;
-            if (!solucao.apagar())
+            if (solucao.apagar())
             {
-                Response.Write(solucao.message);
-                Response.StatusCode = 500;
+                solucao.message = "DEL-SOL-OK";
+                //agora que apagou a solucao, tem que apagar os arquivos também
+                string caminho = Server.MapPath("~/img/problemas/" + solucao.IdProblema + "/" + solucao.Id);
+                if (System.IO.Directory.Exists(caminho))
+                    foreach (string arquivoImagem in System.IO.Directory.GetFiles(caminho))
+                        System.IO.File.Delete(arquivoImagem);
             }
-
-            //agora que apagou a solucao, tem que apagar os arquivos também
-            string caminho = Server.MapPath("~/img/problemas/" + solucao.IdProblema + "/" + solucao.Id);
-            if (System.IO.Directory.Exists(caminho))
-                foreach (string arquivoImagem in System.IO.Directory.GetFiles(caminho))
-                    System.IO.File.Delete(arquivoImagem);
-
         }
         catch (Exception ex)
         {
-            Response.Write(ex.Message);
-            Response.StatusCode = 500;
+            solucao.message = ex.Message;
         }
-
-
+        Response.Write(solucao.message);
     }
 }

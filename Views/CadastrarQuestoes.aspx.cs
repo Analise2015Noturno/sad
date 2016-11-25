@@ -57,6 +57,12 @@ public partial class Views_CadastrarQuestoes : System.Web.UI.Page
             try
             {
                 codigoProblema = int.Parse(txtResposta.Value);
+                if( (codigoProblema<0) || (codigoProblema>10) )
+                {
+                    formDescricao.Attributes["class"] = "form-group has-error";
+                    helpBlockResposta.InnerText = "Resposta deve ser entre 0 e 10.";
+                    podeGravar = false;
+                }
             }
             catch
             {
@@ -156,5 +162,6 @@ public partial class Views_CadastrarQuestoes : System.Web.UI.Page
 
         sectionQuestoes.Controls.Add(table);
     }
+
 
 }

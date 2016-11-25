@@ -6,6 +6,10 @@ a {
     text-decoration: none;
 }
 
+.border15 {
+    border-radius:15px;
+}
+
 .imagemSolucao {
     border-radius:15px;
     margin:5px auto;
